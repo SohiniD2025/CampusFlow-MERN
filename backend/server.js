@@ -11,8 +11,13 @@ const { notFound, errorHandler } = require("./src/middleware/errorMiddleware");
 
 const app = express();
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
-  credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://campus-flow-mern.vercel.app"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 app.use(cookieParser());
